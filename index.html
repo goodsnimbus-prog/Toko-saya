@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HomeComfort - Solusi Rumah Nyaman</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { font-family: 'Poppins', sans-serif; }
+        .hero-section {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1616486029423-f4603953457a?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center/cover;
+            height: 50vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+        }
+        .product-card {
+            transition: transform 0.3s ease;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-gray-50">
+    <nav class="p-5 bg-white shadow-md text-center text-xl font-bold text-indigo-700">HOMECOMFORT ID</nav>
+
+    <header class="hero-section">
+        <div class="text-center">
+            <h1 class="text-5xl font-extrabold mb-4 animate-fade-in">Ciptakan Rumah Impian Anda</h1>
+            <p class="text-xl mb-6 animate-fade-in-delay">Solusi lengkap untuk kenyamanan dan keindahan setiap sudut rumah.</p>
+            <a href="#products" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-8 rounded-full shadow-lg transition duration-300 transform hover:scale-105">Lihat Produk Kami</a>
+        </div>
+    </header>
+
+    <section id="products" class="max-w-6xl mx-auto py-12 px-6">
+        <h2 class="text-4xl font-bold text-center text-gray-800 mb-10">Produk Unggulan Kami</h2>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Product 1: Humidifier -->
+            <div class="product-card bg-white rounded-2xl shadow-xl border border-gray-100 p-6 flex flex-col items-center text-center">
+                <img src="https://images.unsplash.com/photo-1585336261022-68618a7c81d0?q=80&w=500" alt="Humidifier Aroma Therapy" class="rounded-xl mb-4 w-full h-48 object-cover">
+                <h3 class="text-2xl font-bold text-gray-800 mb-2">Humidifier Aroma Therapy</h3>
+                <p class="text-gray-600 mb-4 flex-grow">Ubah ruangan jadi rileks, wangi, dan sehat dalam sekejap. Cocok untuk tidur lebih nyenyak.</p>
+                <div class="text-3xl font-bold text-indigo-600 mb-4">Rp 129.000</div>
+                <button onclick="openOrderForm('Humidifier Aroma Therapy', '129.000')" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-6 rounded-full w-full">Pesan Sekarang</button>
+            </div>
+
+            <!-- Product 2: Smart LED Strip Lights -->
+            <div class="product-card bg-white rounded-2xl shadow-xl border border-gray-100 p-6 flex flex-col items-center text-center">
+                <img src="https://images.unsplash.com/photo-1616486244673-82a0b1b1b1b1?q=80&w=500" alt="Smart LED Strip Lights" class="rounded-xl mb-4 w-full h-48 object-cover">
+                <h3 class="text-2xl font-bold text-gray-800 mb-2">Smart LED Strip Lights</h3>
+                <p class="text-gray-600 mb-4 flex-grow">Atur suasana pencahayaan rumah Anda dari smartphone. Ribuan warna, jutaan kemungkinan.</p>
+                <div class="text-3xl font-bold text-indigo-600 mb-4">Rp 99.000</div>
+                <button onclick="openOrderForm('Smart LED Strip Lights', '99.000')" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-6 rounded-full w-full">Pesan Sekarang</button>
+            </div>
+
+            <!-- Product 3: Mini Air Purifier -->
+            <div class="product-card bg-white rounded-2xl shadow-xl border border-gray-100 p-6 flex flex-col items-center text-center">
+                <img src="https://images.unsplash.com/photo-1606771000000-000000000000?q=80&w=500" alt="Mini Air Purifier" class="rounded-xl mb-4 w-full h-48 object-cover">
+                <h3 class="text-2xl font-bold text-gray-800 mb-2">Mini Air Purifier</h3>
+                <p class="text-gray-600 mb-4 flex-grow">Udara bersih di mana saja Anda berada. Ringkas, portabel, dan efektif.</p>
+                <div class="text-3xl font-bold text-indigo-600 mb-4">Rp 149.000</div>
+                <button onclick="openOrderForm('Mini Air Purifier', '149.000')" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-6 rounded-full w-full">Pesan Sekarang</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Floating Order Form Modal -->
+    <div id="orderModal" class="fixed inset-0 bg-gray-600 bg-opacity-75 flex items-center justify-center hidden p-4">
+        <div class="bg-white rounded-2xl shadow-2xl p-8 w-full max-w-md relative animate-zoom-in">
+            <button onclick="closeOrderForm()" class="absolute top-4 right-4 text-gray-500 hover:text-gray-800 text-3xl font-light">&times;</button>
+            <h3 class="text-2xl font-bold text-center text-indigo-700 mb-6" id="modalTitle">Pesan Humidifier Aroma Therapy</h3>
+            <form id="modalOrderForm" class="space-y-4">
+                <input type="hidden" id="modalProductName">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Nama Lengkap</label>
+                    <input type="text" id="modalName" class="mt-1 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500" required>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Nomor WhatsApp</label>
+                    <input type="tel" id="modalPhone" class="mt-1 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500" placeholder="Contoh: 6281234567890" required>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Alamat Lengkap (termasuk kota dan kode pos)</label>
+                    <textarea id="modalAddress" rows="3" class="mt-1 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500" required></textarea>
+                </div>
+                <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 rounded-lg shadow-md transition duration-300">Konfirmasi Pesanan</button>
+            </form>
+        </div>
+    </div>
+
+    <footer class="bg-gray-800 text-white py-8 mt-12">
+        <div class="max-w-6xl mx-auto px-6 text-center">
+            <p>&copy; 2026 HomeComfort ID. Semua Hak Dilindungi.</p>
+        </div>
+    </footer>
+
+    <script>
+        const WHATSAPP_NUMBER = '6282339787631'; // Ganti dengan nomor WhatsApp Anda
+        const FORM_SUBMIT_EMAIL = 'goodsnimbus@gmail.com'; // Ganti dengan email Anda
+
+        function openOrderForm(productName, price) {
+            document.getElementById('modalTitle').innerText = 'Pesan ' + productName + ' (Rp ' + price + ')';
+            document.getElementById('modalProductName').value = productName;
+            document.getElementById('orderModal').classList.remove('hidden');
+        }
+
+        function closeOrderForm() {
+            document.getElementById('orderModal').classList.add('hidden');
+        }
+
+        document.getElementById('modalOrderForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const btn = e.target.querySelector('button');
+            btn.innerText = 'Mengirim...';
+            btn.disabled = true;
+
+            const productName = document.getElementById('modalProductName').value;
+            const name = document.getElementById('modalName').value;
+            const phone = document.getElementById('modalPhone').value;
+            const address = document.getElementById('modalAddress').value;
+
+            // Send to FormSubmit for email notification
+            const formData = new FormData();
+            formData.append('name', name);
+            formData.append('phone', phone);
+            formData.append('address', address);
+            formData.append('_subject', `Pesanan Baru: ${productName}`);
+            formData.append('Produk', productName);
+
+            try {
+                await fetch(`https://formsubmit.co/ajax/${FORM_SUBMIT_EMAIL}`, {
+                    method: 'POST',
+                    body: formData
+                });
+
+                // Send to WhatsApp
+                const waMsg = encodeURIComponent(`Halo, saya ingin pesan ${productName}.%0A%0ANama: ${name}%0ANo. WA: ${phone}%0AAlamat: ${address}%0A%0A(Ini pesan otomatis dari website HomeComfort ID)`);
+                window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${waMsg}`, '_blank');
+
+                alert('Pesanan Anda berhasil dikirim! Kami akan menghubungi Anda segera.');
+                closeOrderForm();
+                e.target.reset();
+            } catch (err) {
+                alert('Maaf, terjadi kesalahan saat mengirim pesanan. Silakan coba lagi.');
+                console.error('Error sending form:', err);
+            } finally {
+                btn.innerText = 'Konfirmasi Pesanan';
+                btn.disabled = false;
+            }
+        });
+    </script>
+</body>
+</html>
