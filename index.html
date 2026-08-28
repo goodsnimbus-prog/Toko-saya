@@ -136,11 +136,10 @@
             <h2>Tiga benda untuk rumah</h2>
         </div>
 
-        <div class="grid">
-            <!-- 1 -->
+        <div class="grid" id="productGrid">
+            <!-- Default Static Products (Akan digantikan otomatis jika Google Sheets dihubungkan) -->
             <article class="card">
-                <img src="https://picsum.photos/id/1053/800/800" 
-                     onerror="this.src='https://via.placeholder.com/800x800/f8f8f8/cccccc?text=HUMIDIFIER'" alt="Humidifier Aroma Therapy">
+                <img src="https://picsum.photos/id/1053/800/800" onerror="this.src='https://via.placeholder.com/800x800/f8f8f8/cccccc?text=HUMIDIFIER'" alt="Humidifier Aroma Therapy">
                 <div class="card-body">
                     <div class="cat">Aromaterapi</div>
                     <h3>Humidifier Aroma</h3>
@@ -152,10 +151,8 @@
                 </div>
             </article>
 
-            <!-- 2 -->
             <article class="card">
-                <img src="https://picsum.photos/id/1060/800/800" 
-                     onerror="this.src='https://via.placeholder.com/800x800/f8f8f8/cccccc?text=LED+STRIP'" alt="Smart LED Strip Lights">
+                <img src="https://picsum.photos/id/1060/800/800" onerror="this.src='https://via.placeholder.com/800x800/f8f8f8/cccccc?text=LED+STRIP'" alt="Smart LED Strip Lights">
                 <div class="card-body">
                     <div class="cat">Pencahayaan</div>
                     <h3>Smart LED Strip</h3>
@@ -167,10 +164,8 @@
                 </div>
             </article>
 
-            <!-- 3 -->
             <article class="card">
-                <img src="https://picsum.photos/id/1018/800/800" 
-                     onerror="this.src='https://via.placeholder.com/800x800/f8f8f8/cccccc?text=AIR+PURIFIER'" alt="Mini Air Purifier">
+                <img src="https://picsum.photos/id/1018/800/800" onerror="this.src='https://via.placeholder.com/800x800/f8f8f8/cccccc?text=AIR+PURIFIER'" alt="Mini Air Purifier">
                 <div class="card-body">
                     <div class="cat">Udara</div>
                     <h3>Mini Air Purifier</h3>
@@ -214,6 +209,33 @@
     <script>
         const WA = '6282339787631';
         const EMAIL = 'goodsnimbus@gmail.com';
+        const SHEET_API_URL = ''; // Isi dengan URL Web App Google Sheets Anda
+
+        // --- Auto-load products from Google Sheets ---
+        if (SHEET_API_URL) {
+            fetch(SHEET_API_URL)
+                .then(r => r.json())
+                .then(data => {
+                    const grid = document.getElementById('productGrid');
+                    if (!data || !data.length) return;
+                    grid.innerHTML = data.map(p => `
+                        <article class="card">
+                            <img src="${p.ImageURL || 'https://via.placeholder.com/800x800/f8f8f8/cccccc?text=NO+IMAGE'}" 
+                                 onerror="this.src='https://via.placeholder.com/800x800/f8f8f8/cccccc?text=NO+IMAGE'" alt="${p.Name}">
+                            <div class="card-body">
+                                <div class="cat">${p.Category || 'Produk'}</div>
+                                <h3>${p.Name}</h3>
+                                <p>${p.Description || ''}</p>
+                                <div class="row">
+                                    <span class="price">${p.Price}</span>
+                                    <button class="order-btn" onclick="openOrder('${p.Name}','${p.Price}')">Pesan</button>
+                                </div>
+                            </div>
+                        </article>
+                    `).join('');
+                })
+                .catch(err => console.warn('Gagal memuat produk dari Sheets:', err));
+        }
 
         function openOrder(name, price) {
             document.getElementById('mProduct').value = name;
