@@ -249,11 +249,11 @@
         <span class="wa-tooltip">Chat WhatsApp Kami</span>
     </a>
 
-    <!-- DAEMON 2: Order Monitor Panel -->
-    <div class="order-monitor">
+    <!-- DAEMON 2: Order Monitor Panel (DISABLED) -->
+    <!-- <div class="order-monitor">
         <div class="badge"><span class="dot"></span> Live</div>
         <p style="margin-top:10px">Order hari ini: <strong id="orderCount">5</strong></p>
-    </div>
+    </div> -->
 
     <!-- DAEMON 3: Live Visitor Counter -->
     <div class="visitor-counter">
@@ -380,12 +380,14 @@
             }
         });
 
-        // ===== DAEMON 2: Order Monitor (simulasi) =====
+        // ===== DAEMON 2: Order Monitor (DISABLED) =====
+        /*
         setInterval(() => {
             const orders = Math.floor(Math.random() * 8) + 3;
             const c = document.getElementById('orderCount');
             if (c) c.textContent = orders;
         }, 5000);
+        */
 
         // ===== DAEMON 3: Live Visitor Counter (simulasi) =====
         setInterval(() => {
